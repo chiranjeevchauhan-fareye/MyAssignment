@@ -1,0 +1,22 @@
+apiVersion: apps/v1 #The Kubernetes API version used to create this object.
+kind: Deployment #The type of object being created, in this case, a Pod.
+metadata:
+  name: k8s-deploy
+  labels:
+    app: k8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s
+  template:
+    metadata: #Data that helps uniquely identify the object, including its name and labels.
+      name: k8spod #The name of the Pod.
+      labels: # Key-value pairs used to organize and select groups of objects
+        app: k8s
+    spec: # Describes the desired state of the Pod.
+      containers: # An array of containers that should be run in this Pod.
+      - name: k8s-app #The name of the container.
+        image: chiranjeevchauhan/my_assignment1:latest # The container image to run
+        ports: #Ports to expose on the container.
+        - containerPort: 8080
